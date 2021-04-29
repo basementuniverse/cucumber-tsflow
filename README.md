@@ -2,6 +2,9 @@
 
 Provides 'specflow' like bindings for CucumberJS in TypeScript 1.7+.
 
+### Fork description
+
+This is a fork of https://github.com/timjroberts/cucumber-js-tsflow, including only the `./cucumber-tsflow` directory. It has had the https://github.com/wudong/cucumber-js-tsflow/tree/before_after_all_hooks branch merged into it, which adds support for `beforeAll` and `afterAll` hooks.
 
 ### Bindings
 
@@ -77,25 +80,43 @@ import { binding, before, after } from "cucumber-tsflow";
 class MySteps {
     ...
     @before()
-    public beforeAllScenarios(): void {
+    public beforeEachScenario(): void {
+        // This will be called before each scenario
         ...
     }
     ...
 
     @before("requireTempDir")
-    public async beforeAllScenariosRequiringTempDirectory(): Promise<void> {
-        let tempDirInfo = await this.createTemporaryDirectory();
+    public async beforeEachScenarioRequiringTempDirectory(): Promise<void> {
+        // This will be called before each scenario tagged with 'requireTempDir', or before every scenario in features tagged with 'requireTempDir'
+        let tempDirInfo = await this.createTempDirectory();
 
         ...
     }
 
     @after()
-    public afterAllScenarios(): void {
+    public afterEachScenario(): void {
+        // This will be called after each scenario
         ...
     }
 
-    @after("requireTmpDir")
-    public afterAllScenarios(): void {
+    @after("requireTempDir")
+    public afterEachScenarioRequiringTempDirectory(): void {
+        // This will be called after each scenario tagged with 'requireTempDir`, or after every scenario in features tagged with 'requireTempDir'
+        ...
+    }
+    
+    @beforeAll()
+    public static beforeAllScenarios(): void {
+        // This will be called before the first scenario
+        // It must be a static method
+        ...
+    }
+    
+    @afterAll()
+    public static afterAllScenarios(): void {
+        // This will be called after the last scenario
+        // It must be a static method
         ...
     }
 }
