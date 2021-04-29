@@ -4,7 +4,7 @@ Provides 'specflow' like bindings for CucumberJS in TypeScript 1.7+.
 
 ### Fork description
 
-This is a fork of https://github.com/timjroberts/cucumber-js-tsflow, including only the `./cucumber-tsflow` directory. It has had the https://github.com/wudong/cucumber-js-tsflow/tree/before_after_all_hooks branch merged into it, which adds support for `beforeAll` and `afterAll` hooks.
+This is a detached fork of https://github.com/timjroberts/cucumber-js-tsflow, including only the `./cucumber-tsflow` directory. It has had the https://github.com/wudong/cucumber-js-tsflow/tree/before_after_all_hooks branch merged into it, which adds support for `beforeAll` and `afterAll` hooks.
 
 ### Bindings
 
